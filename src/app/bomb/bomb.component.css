@@ -40,6 +40,7 @@ button {
 
 .game-state {
   background-color: #E74C3C;
+
 }
 
 .outer {
@@ -75,6 +76,12 @@ button {
 
 .start-count {
   width: 10%;
+}
+
+.infobutton {
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 
