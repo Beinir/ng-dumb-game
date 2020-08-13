@@ -14,11 +14,14 @@ export class BombComponent implements OnInit {
   game_over: boolean;
   disablebtn: boolean;
   pressstar: boolean;
+  infoBool: boolean;
   game_won: number;
   time_score: number;
   high_score: number;
   countdown: number;
+  welcome:number;
   subscription: Subscription;
+
 
   constructor() {
   }
@@ -116,14 +119,24 @@ export class BombComponent implements OnInit {
     else {
       this.countdown = this.countdown -1;
     }
+  }
 
-
-
+  public welcomeMessage(){
+    console.log(this.welcome)
+    if (this.welcome < 4) {
+      this.welcome = this.welcome + 1;
+    }
+    else {
+      this.subscription.unsubscribe()
+    }
   }
 
   ngOnInit(): void {
     this.initialGame()
     this.high_score = 1000;
     this.countdown = 4;
+    this.welcome = 0;
+    this.infoBool = false;
+    this.subscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
 }
