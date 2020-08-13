@@ -1,0 +1,82 @@
+
+<div>
+  <h1>Dumbest Game Ever</h1>
+</div>
+<div>
+  <div class="d-flex justify-content-center">
+  <button type="button" class="btn btn-primary"
+          style="background-color:#158d23 "
+          (click)="pendingStart()"
+          [disabled]="disablebtn"
+          >Start Game</button>
+  </div>
+</div>
+<div class="container" >
+  <div class="row specs">
+    <div class="col set-border bomb-design">
+      <div class="timer">{{timer[0]}}</div>
+      <div class="d-flex justify-content-center" style="height: 50%">
+      <button type="button" class="stop-button btn btn-primary" (click)="stop(0)" [disabled]="disablebutton[0]">Stop</button>
+      </div>
+    </div>
+    <div class="col set-border bomb-design">
+      <div class="timer" >{{timer[1]}}</div>
+      <div class="d-flex justify-content-center" style="height: 50%">
+        <button type="button" class="stop-button btn btn-primary" (click)="stop(1)" [disabled]="disablebutton[1]">Stop</button>
+      </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col set-border bomb-design">
+      <div class="timer" >{{timer[2]}}</div>
+      <div class="d-flex justify-content-center" style="height: 50%">
+        <button type="button" class="stop-button btn btn-primary" (click)="stop(2)" [disabled]="disablebutton[2]">Stop</button>
+      </div>
+    </div>
+    <div class="col set-border bomb-design">
+      <div class="timer" >{{timer[3]}}</div>
+      <div class="d-flex justify-content-center" style="height: 50%">
+        <button type="button" class="stop-button btn btn-primary" (click)="stop(3)" [disabled]="disablebutton[3]">Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="outer game-state" *ngIf="game_over == true" style="background-color: rgba(255,255,255,0.7);">
+    <div class="middle">
+      <div class="inner set-border" style="text-align: center; background-color: #E74C3C ">
+        <h1>Game Over</h1>
+        <p>Bombs Have Exploded</p>
+        <button type="button" class="btn btn-primary"
+                style="margin-top: 10%"
+                (click)="initialGame()">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="outer game-state" *ngIf="game_won == 4" style="background-color: rgba(255,255,255,0.7);">
+    <div class="middle">
+      <div class="inner set-border" style="text-align: center; background-color: #158d23 ">
+        <h1>You win</h1>
+        <div>Aggregate Time: {{time_score}}</div>
+        <button type="button" class="btn btn-primary"
+                style="margin-top: 20%"
+                (click)="initialGame()">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="outer game-state" *ngIf="pressstar == true" style="background-color: rgba(255,255,255,0.7);">
+    <div class="middle">
+      <div class="inner set-border" style="text-align: center; background-color: black ">
+        <h1 style="color: whitesmoke">Game Starts in</h1>
+        <div style="font-size: 22px; color: whitesmoke">{{this.countdown}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="high-score">High Score: {{high_score}} </div>
+
+</div>
+
+
+
+

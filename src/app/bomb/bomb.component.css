@@ -1,0 +1,76 @@
+
+.specs {
+  margin-top: 5%;
+}
+
+h1 {
+  font-family: 'Apple Braille';
+  text-align: center;
+  margin-top: 5%;
+}
+
+button {
+  margin-top: 2%;
+  min-width: 20px;
+}
+
+.bomb-design {
+  background-color: #E74C3C;
+}
+
+.timer {
+  margin-top: 5%;
+  text-align: center;
+  color: red;
+  background-color: black;
+  width: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.set-border {
+  border-radius: 10px;
+  border-style: solid ;
+  margin-top: 2%;
+  margin-right: 2%;
+  height: 150px;
+}
+
+.game-state {
+  background-color: #E74C3C;
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.stop-button {
+  width: 50%;
+  height: 100%;
+}
+
+.high-score {
+  margin-top: 4%;
+  margin-right: 5%;
+  text-align: right;
+}
+
+

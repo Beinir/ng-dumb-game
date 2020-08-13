@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-dumb-game"
+    }
+  },
+  "defaultProject": "ng-dumb-game",
+  "cli": {
+    "analytics": "afc16857-3e87-416f-9e23-ed33f2475e35"
+  }
 }
