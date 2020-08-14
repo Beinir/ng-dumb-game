@@ -104,6 +104,7 @@ export class BombComponent implements OnInit {
   }
 
   public pendingStart(){
+    this.countdown = 4;
     this.pressstar = true;
     this.subscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
     this.treeTwoOne()
@@ -111,9 +112,8 @@ export class BombComponent implements OnInit {
 
   treeTwoOne(){
     if (this.countdown == 1){
-      this.subscription.unsubscribe()
       this.pressstar = false;
-      this.countdown = 4
+      this.subscription.unsubscribe()
       this.timeGenerator()
     }
     else {
@@ -122,7 +122,6 @@ export class BombComponent implements OnInit {
   }
 
   public welcomeMessage(){
-    console.log(this.welcome)
     if (this.welcome < 4) {
       this.welcome = this.welcome + 1;
     }
