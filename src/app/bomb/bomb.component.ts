@@ -35,12 +35,11 @@ export class BombComponent implements OnInit {
     this.assignTimer()
     this.subscription = interval(100).subscribe(this.countDown.bind(this));
     this.disablebtn = true;
-
   }
 
   public assignTimer(){
     for(let i = 0; i < 4; i++){
-      this.timer[i] = (Math.random() * (2.5 - 4.1) + 4.1).toFixed(1)
+      this.timer[i] = (Math.random() * (2.0 - 4.1) + 4.1).toFixed(1)
     }
 
   }
@@ -117,7 +116,6 @@ export class BombComponent implements OnInit {
 
   public treeTwoOne() {
     if (this.countdown > 0) {
-      console.log("Hey")
       this.countdown--;
     }
     if (this.countdown == 0) {
@@ -144,4 +142,5 @@ export class BombComponent implements OnInit {
     this.infoBool = false;
     this.welcome_subscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
+
 }
