@@ -21,6 +21,9 @@ export class BombComponent implements OnInit {
   countdown: number;
   welcome:number;
   subscription: Subscription;
+  pending_subscription: Subscription;
+  welcome_subscription: Subscription;
+
 
 
   constructor() {
@@ -80,7 +83,8 @@ export class BombComponent implements OnInit {
   }
 
   public gameOver() {
-    if (this.timer[0] < 0.2 || this.timer[1] < 0.2 || this.timer[2] < 0.2 || this.timer[3] < 0.2 ) {
+    if (this.timer[0] < 0.1 || this.timer[1] < 0.1 || this.timer[2] < 0.1 || this.timer[3] < 0.1 ) {
+      this.disablebutton = [true,true,true,true];
       this.game_over = true;
       this.subscription.unsubscribe();
     }
@@ -95,6 +99,7 @@ export class BombComponent implements OnInit {
     this.game_over = false;
     this.disablebtn = false;
     this.game_won = 0;
+    this.countdown = 4;
   }
 
   public highScore() {
@@ -106,18 +111,19 @@ export class BombComponent implements OnInit {
   public pendingStart(){
     this.countdown = 4;
     this.pressstar = true;
-    this.subscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
-    this.treeTwoOne()
+    this.pending_subscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
+    this.treeTwoOne();
   }
 
-  treeTwoOne(){
-    if (this.countdown == 1){
-      this.pressstar = false;
-      this.subscription.unsubscribe()
-      this.timeGenerator()
+  public treeTwoOne() {
+    if (this.countdown > 0) {
+      console.log("Hey")
+      this.countdown--;
     }
-    else {
-      this.countdown = this.countdown -1;
+    if (this.countdown == 0) {
+      this.pressstar = false;
+      this.timeGenerator()
+      this.pending_subscription.unsubscribe();
     }
   }
 
@@ -126,16 +132,16 @@ export class BombComponent implements OnInit {
       this.welcome = this.welcome + 1;
     }
     else {
-      this.subscription.unsubscribe()
+      this.welcome_subscription.unsubscribe()
     }
   }
 
   ngOnInit(): void {
     this.initialGame()
-    this.high_score = 1000;
     this.countdown = 4;
+    this.high_score = 1000;
     this.welcome = 0;
     this.infoBool = false;
-    this.subscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
+    this.welcome_subscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
 }

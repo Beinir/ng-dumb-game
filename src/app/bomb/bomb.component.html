@@ -69,18 +69,20 @@
   <div class="outer game-state" *ngIf="pressstar == true" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
       <div class="start-count inner set-border" style="text-align: center; background-color: gray; ">
-        <div style="font-size: 80px; color: whitesmoke; margin-top: 5% ">{{this.countdown}}</div>
+        <div style="font-size: 80px; color: whitesmoke; margin-top: 5% ">{{countdown}}</div>
       </div>
     </div>
   </div>
 
-  <div class="high-score">High Score: {{high_score}} </div>
+  <div *ngIf="high_score < 1000" class="high-score">High Score: {{high_score}} </div>
+
 
   <div class="outer game-state"
        *ngIf="welcome < 3" style="background-color: whitesmoke;">
     <div class="middle">
       <div class="inner" style="text-align: center; width: 98% ">
         <h1>Welcome to The Dumbest Game Ever</h1>
+        <div class="loader container" style="text-align: center"></div>
       </div>
     </div>
   </div>
