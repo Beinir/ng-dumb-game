@@ -31,7 +31,7 @@ export class BombComponent implements OnInit {
 
   public timeGenerator(){
     this.game_over = false
-    this.disablebutton = [false,false,false,false ]
+    this.disablebutton = [false,false,false,false]
     this.assignTimer()
     this.subscription = interval(100).subscribe(this.countDown.bind(this));
     this.disablebtn = true;
@@ -67,6 +67,7 @@ export class BombComponent implements OnInit {
   }
 
   public stop(para) {
+    this.gameOver()
       this.stoptimer[para] = true;
       this.game_won = this.game_won + 1;
       this.disablebutton[para] = true;

@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "aws-deploy": "aws s3 sync dist/ng-dumb-game/ s3://ng-dumb-game"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,8 @@
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
+    "@ng-toolkit/serverless": "^8.1.0",
+    "@ng-toolkit/universal": "^1.1.21",
     "bootstrap": "^4.5.0",
     "howler": "^2.2.0",
     "rxjs": "~6.5.5",

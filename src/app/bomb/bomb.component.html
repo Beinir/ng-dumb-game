@@ -18,7 +18,10 @@
 <div class="container" >
   <div class="row specs">
     <div class="col set-border bomb-design">
-      <div class="timer">{{timer[0]}}</div>
+      <div>
+        <div class="timer">{{timer[0]}}</div>
+        <div><></div>
+      </div>
       <div class="d-flex justify-content-center" style="height: 50%">
       <button type="button" class="stop-button btn btn-primary" (click)="stop(0)" [disabled]="disablebutton[0]">Stop</button>
       </div>
@@ -47,11 +50,11 @@
   <!--Game over box-->
   <div class="outer game-state" *ngIf="game_over == true" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
-      <div class="inner set-border" style="text-align: center; background-color: #E74C3C ">
+      <div class="inner set-border" style="text-align: center; background-color: #E74C3C;">
         <h1>Game Over</h1>
         <p>Bombs Have Exploded</p>
         <button type="button" class="btn btn-primary"
-                style="margin-top: 10%"
+                style="margin-top: 15%"
                 (click)="initialGame()">Play Again</button>
       </div>
     </div>
@@ -62,7 +65,9 @@
     <div class="middle">
       <div class="inner set-border" style="text-align: center; background-color: #158d23 ">
         <h1>You win</h1>
-        <div>Aggregate Time: {{time_score}}</div>
+        <div>Time: <b> {{time_score}} seconds</b> </div>
+        <div *ngIf="time_score > high_score" style="margin-top: 2%">You did not beat your high score</div>
+        <div *ngIf="time_score < high_score" style="margin-top: 2%">New high score!!"</div>
         <button type="button" class="btn btn-primary"
                 style="margin-top: 20%"
                 (click)="initialGame()">Play Again</button>
