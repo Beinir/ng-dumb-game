@@ -1,6 +1,6 @@
+
 <div>
-  <h1>Dumbest Game Ever</h1>
-</div>
+<h2>Dumbest Game Ever</h2>
 
 <!--Start and info button-->
 <div>
@@ -20,7 +20,6 @@
     <div class="col set-border bomb-design">
       <div>
         <div class="timer">{{timer[0]}}</div>
-        <div><></div>
       </div>
       <div class="d-flex justify-content-center" style="height: 50%">
       <button type="button" class="stop-button btn btn-primary" (click)="stop(0)" [disabled]="disablebutton[0]">Stop</button>
@@ -48,7 +47,7 @@
   </div>
 
   <!--Game over box-->
-  <div class="outer game-state" *ngIf="game_over == true" style="background-color: rgba(255,255,255,0.7);">
+  <div class="outer game-state" *ngIf="game_over == true && game_won != 4" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
       <div class="inner set-border" style="text-align: center; background-color: #E74C3C;">
         <h1>Game Over</h1>
@@ -87,7 +86,7 @@
   <div *ngIf="high_score < 1000" class="high-score">High Score: {{high_score}} </div>
 
   <!--Intro Box-->
-  <div class="outer game-state"
+  <div class="outer game-state" style="height: 100%"
        *ngIf="welcome < 3" style="background-color: whitesmoke;">
     <div class="middle">
       <div class="inner" style="text-align: center; width: 98% ">
@@ -109,8 +108,9 @@
       </div>
     </div>
   </div>
-
 </div>
+</div>
+
 
 
 

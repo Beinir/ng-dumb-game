@@ -3,10 +3,10 @@
   margin-top: 5%;
 }
 
-h1 {
+h2 {
   font-family: 'Apple Braille';
   text-align: center;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 button {
@@ -16,14 +16,16 @@ button {
 
 .bomb-design {
   background-color: #E74C3C;
+  max-height: 121px;
 }
 
 .timer {
-  margin-top: 5%;
+  margin-top: 0.5%;
   text-align: center;
   color: red;
   background-color: black;
-  width: 20%;
+  width: 50%;
+  font-size: 30px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -70,7 +72,7 @@ button {
 }
 
 .high-score {
-  margin-top: 4%;
+  margin-top: 2%;
   margin-right: 5%;
   text-align: right;
 }

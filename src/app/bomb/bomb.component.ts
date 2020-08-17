@@ -75,7 +75,7 @@ export class BombComponent implements OnInit {
 
 
   public gameWin() {
-    if (this.game_won == 4) {
+    if (this.game_won == 4 && this.timer[0] != 0 && this.timer[1] != 0 && this.timer[2] != 0 && this.timer[3] != 0) {
       this.time_score = this.timer[0] + this.timer[1] + this.timer[2] + this.timer[3];
       this.time_score = Math.round((this.time_score + Number.EPSILON) * 100) / 100
       this.subscription.unsubscribe()
