@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {observable, Observable, Subscription, timer, interval} from 'rxjs';
+import {publish} from "rxjs/operators";
 
 @Component({
   selector: 'app-bomb',
@@ -15,6 +16,7 @@ export class BombComponent implements OnInit {
   disablebtn: boolean;
   pressstar: boolean;
   infoBool: boolean;
+  stopAudio: boolean;
   game_won: number;
   time_score: number;
   high_score: number;
@@ -23,6 +25,7 @@ export class BombComponent implements OnInit {
   subscription: Subscription;
   pending_subscription: Subscription;
   welcome_subscription: Subscription;
+  gameTick
 
 
 
@@ -109,17 +112,19 @@ export class BombComponent implements OnInit {
   }
 
   public pendingStart(){
-    this.countdown = 4;
+    this.countdown = 3;
     this.pressstar = true;
+    this.playAudio("assets/sounds/beep-07.wav");
+    this.stopAudio = false;
     this.pending_subscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
-    this.treeTwoOne();
   }
 
   public treeTwoOne() {
-    if (this.countdown > 0) {
+    if (this.countdown > 1) {
       this.countdown--;
+      this.playAudio("assets/sounds/beep-07.wav");
     }
-    if (this.countdown == 0) {
+    else if (this.countdown == 1) {
       this.pressstar = false;
       this.timeGenerator()
       this.pending_subscription.unsubscribe();
@@ -133,6 +138,13 @@ export class BombComponent implements OnInit {
     else {
       this.welcome_subscription.unsubscribe()
     }
+  }
+
+  public playAudio(para){
+    let audio = new Audio();
+    audio.src = para;
+    audio.load();
+    audio.play();
   }
 
   ngOnInit(): void {
