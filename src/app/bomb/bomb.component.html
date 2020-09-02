@@ -10,9 +10,9 @@
             <button type="button" class="btn btn-primary"
                     style="background-color:#158d23"
                     (click)="pendingStart()"
-                    [disabled]="disablebtn"
+                    [disabled]="disable_btn"
             >Start Game</button>
-            <button class="infobutton" style="margin-left: 1%" (click)="infoBool = true">&#9432;</button>
+            <button class="infobutton" style="margin-left: 1%" (click)="info_bool = true">&#9432;</button>
           </div>
         </div>
         <div class="row specs">
@@ -21,26 +21,26 @@
               <div class="timer">{{timer[0]}}</div>
             </div>
             <div class="d-flex justify-content-center" style="height: 50%">
-              <button type="button" class="stop-button btn btn-primary" (click)="stop(0)" [disabled]="disablebutton[0]">Stop</button>
+              <button type="button" class="stop-button btn btn-primary" (click)="stop(0)" [disabled]="disable_button[0]">Stop</button>
             </div>
           </div>
           <div class="col set-border bomb-design">
             <div class="timer" >{{timer[1]}}</div>
             <div class="d-flex justify-content-center" style="height: 50%">
-              <button type="button" class="stop-button btn btn-primary" (click)="stop(1)" [disabled]="disablebutton[1]">Stop</button>
+              <button type="button" class="stop-button btn btn-primary" (click)="stop(1)" [disabled]="disable_button[1]">Stop</button>
             </div>
           </div>
           <div class="w-100"></div>
           <div class="col set-border bomb-design">
             <div class="timer" >{{timer[2]}}</div>
             <div class="d-flex justify-content-center" style="height: 50%">
-              <button type="button" class="stop-button btn btn-primary" (click)="stop(2)" [disabled]="disablebutton[2]">Stop</button>
+              <button type="button" class="stop-button btn btn-primary" (click)="stop(2)" [disabled]="disable_button[2]">Stop</button>
             </div>
           </div>
           <div class="col set-border bomb-design">
             <div class="timer" >{{timer[3]}}</div>
             <div class="d-flex justify-content-center" style="height: 50%">
-              <button type="button" class="stop-button btn btn-primary" (click)="stop(3)" [disabled]="disablebutton[3]">Stop</button>
+              <button type="button" class="stop-button btn btn-primary" (click)="stop(3)" [disabled]="disable_button[3]">Stop</button>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
   </div>
 
   <!--Game won box-->
-  <div class="outer game-state" *ngIf="game_won == 4" style="background-color: rgba(255,255,255,0.7);">
+  <div class="outer game-state" *ngIf="show_game_win == true" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
       <div class="inner set-border" style="text-align: center; background-color: #158d23; height: 180px; ">
         <h1>You win</h1>
@@ -90,10 +90,10 @@
   </div>
 
   <!--Countdown to game start-->
-  <div class="outer game-state" *ngIf="pressstar == true" style="background-color: rgba(255,255,255,0.7);">
+  <div class="outer game-state" *ngIf="press_star == true" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
       <div class="start-count inner set-border" style="text-align: center; background-color: #5DADE2; ">
-        <div style="font-size: 80px; color: whitesmoke; margin-top: 5% ">{{countdown}}</div>
+        <div style="font-size: 80px; color: whitesmoke; margin-top: 5% ">{{count_down}}</div>
       </div>
     </div>
   </div>
@@ -110,14 +110,14 @@
   </div>
 
   <!--Info Box-->
-  <div class=" outer game-state" *ngIf="infoBool == true" style="background-color: rgba(255,255,255,0.7);">
+  <div class=" outer game-state" *ngIf="info_bool == true" style="background-color: rgba(255,255,255,0.7);">
     <div class="middle">
       <div class="inner set-border" style="text-align: center; background-color: #AED6F1 ">
         <h1>Info</h1>
         <p>Stop the time bombs as close as possible to zero </p>
         <button type="button" class=" btn btn-primary"
                 style="margin-top: 10%"
-                (click)="infoBool = false">Ok</button>
+                (click)="info_bool = false">Ok</button>
       </div>
     </div>
   </div>
