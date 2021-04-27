@@ -30,7 +30,7 @@ export class BombComponent implements OnInit {
   constructor() {
   }
 
-  public timeGenerator(){
+  private timeGenerator(){
     this.GameOver = false;
     this.DisableButton = [false, false, false, false];
     this.assignTimerToEachBomb();
@@ -38,7 +38,7 @@ export class BombComponent implements OnInit {
     this.DisableBtn = true;
   }
 
-  public assignTimerToEachBomb(){
+  private assignTimerToEachBomb(){
     for (let i = 0; i < 4; i++){
       this.timer[i] = (Math.random() * (2.0 - 4.1) + 4.1).toFixed(1);
     }
@@ -46,7 +46,7 @@ export class BombComponent implements OnInit {
   }
 
 
-  public bombsCountDown() {
+  private bombsCountDown() {
     this.checkGameStatus();
     if (this.ShowGameWin === false && this.GameOver === false ) {
       if (this.timer[0] > 0.0 && this.StopTimer[0] === false ) {
@@ -70,12 +70,12 @@ export class BombComponent implements OnInit {
     else { return; }
   }
 
-  public checkGameStatus(){
+  private checkGameStatus(){
     this.gameWin();
     this.gameOver();
   }
 
-  public stop(para) {
+  private stop(para) {
     this.gameOver();
     this.StopTimer[para] = true;
     this.GameWon = this.GameWon + 1;
@@ -83,7 +83,7 @@ export class BombComponent implements OnInit {
   }
 
 
-  public gameWin() {
+  private gameWin() {
     if (this.GameWon === 4 && this.timer[0] !== 0 && this.timer[1] !== 0 && this.timer[2] !== 0 && this.timer[3] !== 0) {
       this.TimeScore = this.timer[0] + this.timer[1] + this.timer[2] + this.timer[3];
       this.TimeScore = Math.round((this.TimeScore + Number.EPSILON) * 100) / 100;
@@ -92,7 +92,7 @@ export class BombComponent implements OnInit {
     }
   }
 
-  public gameOver() {
+  private gameOver() {
     if (this.timer[0] === 0.0 || this.timer[1] === 0.0 || this.timer[2] === 0.0 || this.timer[3] === 0.0 ) {
       this.DisableButton = [true, true, true, true];
       this.GameOver = true;
@@ -113,20 +113,20 @@ export class BombComponent implements OnInit {
     this.CountDown = 4;
   }
 
-  public setHighScore() {
+  private setHighScore() {
     if (this.TimeScore < this.HighScore){
       this.HighScore = this.TimeScore;
     }
   }
 
-  public pendingStart(){
+  private pendingStart(){
     this.CountDown = 3;
     this.PressStart = true;
     this.StopAudio = false;
     this.PendingSubscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
   }
 
-  public treeTwoOne() {
+  private treeTwoOne() {
     if (this.CountDown > 1) {
       this.CountDown--;
     }
@@ -137,23 +137,23 @@ export class BombComponent implements OnInit {
     }
   }
 
-  public welcomeMessage(){
+ /* public welcomeMessage(){
     if (this.welcome < 4) {
       this.welcome = this.welcome + 1;
     }
     else {
-      this.WelcomeSubscription.unsubscribe()
+      this.WelcomeSubscription.unsubscribe();
     }
-  }
+  }*/
 
 
   ngOnInit(): void {
     this.initializeGame();
     this.CountDown = 4;
     this.HighScore = 1000;
-    this.welcome = 0;
+    //this.welcome = 0;
     this.InfoBool = false;
-    this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
+    //this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
 
 }
