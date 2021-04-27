@@ -22,10 +22,10 @@ describe('BombComponent', () => {
   it('should set show_game_win to true if game has been won', function () {
 
     if (this.game_won == 4 && this.timer[0] != 0 && this.timer[1] != 0 && this.timer[2] != 0 && this.timer[3] != 0){
-      expect(component.show_game_win).toBe(true)
+      expect(component.ShowGameWin).toBe(true)
     }
     else {
-      expect(component.show_game_win).toBe(false)
+      expect(component.ShowGameWin).toBe(false)
     }
   });
 

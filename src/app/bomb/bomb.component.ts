@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {observable, Observable, Subscription, timer, interval} from 'rxjs';
-import {publish} from "rxjs/operators";
+import {publish} from 'rxjs/operators';
 
 @Component({
   selector: 'app-bomb',
@@ -9,135 +9,131 @@ import {publish} from "rxjs/operators";
 })
 export class BombComponent implements OnInit {
 
-  timer:any[];
-  stop_timer:boolean[];
-  disable_button:boolean[];
-  game_over: boolean;
-  disable_btn: boolean;
-  press_star: boolean;
-  info_bool: boolean;
-  stop_audio: boolean;
-  game_won: number;
-  time_score: number;
-  high_score: number;
-  count_down: number;
-  welcome:number;
-  show_game_win:boolean;
+  timer: any[];
+  StopTimer: boolean[];
+  DisableButton: boolean[];
+  GameOver: boolean;
+  DisableBtn: boolean;
+  PressStart: boolean;
+  InfoBool: boolean;
+  StopAudio: boolean;
+  GameWon: number;
+  TimeScore: number;
+  HighScore: number;
+  CountDown: number;
+  welcome: number;
+  ShowGameWin: boolean;
   subscription: Subscription;
-  pending_subscription: Subscription;
-  welcome_subscription: Subscription;
+  PendingSubscription: Subscription;
+  WelcomeSubscription: Subscription;
 
   constructor() {
   }
 
   public timeGenerator(){
-    this.game_over = false
-    this.disable_button = [false,false,false,false]
-    this.assignTimer()
-    this.subscription = interval(100).subscribe(this.countDown.bind(this));
-    this.disable_btn = true;
-    console.log(this.timer[0]);
-    console.log(this.timer[1]);
-    console.log(this.timer[2]);
-    console.log(this.timer[3]);
+    this.GameOver = false;
+    this.DisableButton = [false, false, false, false];
+    this.assignTimerToEachBomb();
+    this.subscription = interval(100).subscribe(this.bombsCountDown.bind(this));
+    this.DisableBtn = true;
   }
 
-  public assignTimer(){
-    for(let i = 0; i < 4; i++){
-      this.timer[i] = (Math.random() * (2.0 - 4.1) + 4.1).toFixed(1)
+  public assignTimerToEachBomb(){
+    for (let i = 0; i < 4; i++){
+      this.timer[i] = (Math.random() * (2.0 - 4.1) + 4.1).toFixed(1);
     }
 
   }
 
 
-  countDown() {
-    this.checkGameStatus()
-    if (this.show_game_win == false && this.game_over == false ) {
-      if (this.timer[0] > 0.0 && this.stop_timer[0] == false ) {
-      this.timer[0] = this.timer[0] -0.1;
-      this.timer[0] = Math.round((this.timer[0] + Number.EPSILON) * 100) / 100
+  public bombsCountDown() {
+    this.checkGameStatus();
+    if (this.ShowGameWin === false && this.GameOver === false ) {
+      if (this.timer[0] > 0.0 && this.StopTimer[0] === false ) {
+      this.timer[0] = this.timer[0] - 0.1;
+      this.timer[0] = Math.round((this.timer[0] + Number.EPSILON) * 100) / 100;
       }
-      if (this.timer[1] > 0.0 && this.stop_timer[1] == false) {
-      this.timer[1] = this.timer[1] -0.1;
-      this.timer[1] = Math.round((this.timer[1] + Number.EPSILON) * 100) / 100
+      if (this.timer[1] > 0.0 && this.StopTimer[1] === false) {
+      this.timer[1] = this.timer[1] - 0.1;
+      this.timer[1] = Math.round((this.timer[1] + Number.EPSILON) * 100) / 100;
       }
-      if (this.timer[2] > 0.0  && this.stop_timer[2] == false) {
-      this.timer[2] = this.timer[2] -0.1;
-      this.timer[2] = Math.round((this.timer[2] + Number.EPSILON) * 100) / 100
+      if (this.timer[2] > 0.0  && this.StopTimer[2] === false) {
+      this.timer[2] = this.timer[2] - 0.1;
+      this.timer[2] = Math.round((this.timer[2] + Number.EPSILON) * 100) / 100;
       }
-      if (this.timer[3] > 0.0 && this.stop_timer[3] == false) {
-      this.timer[3] = this.timer[3] -0.1;
-      this.timer[3] = Math.round((this.timer[3] + Number.EPSILON) * 100) / 100
+      if (this.timer[3] > 0.0 && this.StopTimer[3] === false) {
+      this.timer[3] = this.timer[3] - 0.1;
+      this.timer[3] = Math.round((this.timer[3] + Number.EPSILON) * 100) / 100;
       }
-      else { return }
+      else { return; }
     }
-    else { return }
+    else { return; }
   }
 
   public checkGameStatus(){
-    this.gameWin()
-    this.gameOver()
+    this.gameWin();
+    this.gameOver();
   }
 
   public stop(para) {
-    this.gameOver()
-      this.stop_timer[para] = true;
-      this.game_won = this.game_won + 1;
-      this.disable_button[para] = true;
+    this.gameOver();
+    this.StopTimer[para] = true;
+    this.GameWon = this.GameWon + 1;
+    this.DisableButton[para] = true;
   }
 
 
   public gameWin() {
-    if (this.game_won == 4 && this.timer[0] != 0 && this.timer[1] != 0 && this.timer[2] != 0 && this.timer[3] != 0) {
-      this.time_score = this.timer[0] + this.timer[1] + this.timer[2] + this.timer[3];
-      this.time_score = Math.round((this.time_score + Number.EPSILON) * 100) / 100
-      this.show_game_win = true;
-      this.subscription.unsubscribe()
-    }
-  }
-
-  public gameOver() {
-    if (this.timer[0] == 0.0 || this.timer[1] == 0.0 || this.timer[2] == 0.0 || this.timer[3] == 0.0 ) {
-      this.disable_button = [true,true,true,true];
-      this.game_over = true;
+    if (this.GameWon === 4 && this.timer[0] !== 0 && this.timer[1] !== 0 && this.timer[2] !== 0 && this.timer[3] !== 0) {
+      this.TimeScore = this.timer[0] + this.timer[1] + this.timer[2] + this.timer[3];
+      this.TimeScore = Math.round((this.TimeScore + Number.EPSILON) * 100) / 100;
+      this.ShowGameWin = true;
       this.subscription.unsubscribe();
     }
   }
 
-  public initialGame () {
-    this.highScore()
-    this.show_game_win = false;
-    this.stop_timer = [false,false,false,false];
-    this.disable_button = [true,true,true,true]
-    this.timer = [0,0,0,0];
-    this.press_star = false;
-    this.game_over = false;
-    this.disable_btn = false;
-    this.game_won = 0;
-    this.count_down = 4;
+  public gameOver() {
+    if (this.timer[0] === 0.0 || this.timer[1] === 0.0 || this.timer[2] === 0.0 || this.timer[3] === 0.0 ) {
+      this.DisableButton = [true, true, true, true];
+      this.GameOver = true;
+      this.subscription.unsubscribe();
+    }
   }
 
-  public highScore() {
-    if (this.time_score < this.high_score){
-      this.high_score = this.time_score;
+  public initializeGame() {
+    this.setHighScore();
+    this.ShowGameWin = false;
+    this.StopTimer = [false, false, false, false];
+    this.DisableButton = [true, true, true, true];
+    this.timer = [0, 0, 0, 0];
+    this.PressStart = false;
+    this.GameOver = false;
+    this.DisableBtn = false;
+    this.GameWon = 0;
+    this.CountDown = 4;
+  }
+
+  public setHighScore() {
+    if (this.TimeScore < this.HighScore){
+      this.HighScore = this.TimeScore;
     }
   }
 
   public pendingStart(){
-    this.count_down = 3;
-    this.press_star = true;
-    this.stop_audio = false;
-    this.pending_subscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
+    this.CountDown = 3;
+    this.PressStart = true;
+    this.StopAudio = false;
+    this.PendingSubscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
   }
 
   public treeTwoOne() {
-    if (this.count_down > 1) {
-      this.count_down--;
+    if (this.CountDown > 1) {
+      this.CountDown--;
     }
-    else if (this.count_down == 1) {
-      this.press_star = false;
-      this.timeGenerator()
-      this.pending_subscription.unsubscribe();
+    else if (this.CountDown === 1) {
+      this.PressStart = false;
+      this.timeGenerator();
+      this.PendingSubscription.unsubscribe();
     }
   }
 
@@ -146,18 +142,18 @@ export class BombComponent implements OnInit {
       this.welcome = this.welcome + 1;
     }
     else {
-      this.welcome_subscription.unsubscribe()
+      this.WelcomeSubscription.unsubscribe()
     }
   }
 
 
   ngOnInit(): void {
-    this.initialGame()
-    this.count_down = 4;
-    this.high_score = 1000;
+    this.initializeGame();
+    this.CountDown = 4;
+    this.HighScore = 1000;
     this.welcome = 0;
-    this.info_bool = false;
-    this.welcome_subscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
+    this.InfoBool = false;
+    this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
 
 }
