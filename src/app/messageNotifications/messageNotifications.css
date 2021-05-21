@@ -1,0 +1,12 @@
+.outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.game-state {
+  background-color: #E74C3C;
+}

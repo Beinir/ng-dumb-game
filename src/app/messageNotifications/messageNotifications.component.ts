@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {interval, Subscription} from 'rxjs';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { interval, Subscription} from 'rxjs';
+import { HeroService } from "../services/hero.service";
 
 @Component({
   selector: 'app-message-notifications-component',
@@ -11,7 +12,7 @@ export class MessageNotificationsComponent implements OnInit {
   welcome: number;
   WelcomeSubscription: Subscription;
 
-  constructor() { }
+  constructor(private data: HeroService) { }
 
   public welcomeMessage(){
     if (this.welcome < 4) {

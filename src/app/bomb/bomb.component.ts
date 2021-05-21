@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {observable, Observable, Subscription, timer, interval} from 'rxjs';
+import { HeroService } from "../services/hero.service";
 import {publish} from 'rxjs/operators';
 
 @Component({
@@ -22,12 +23,27 @@ export class BombComponent implements OnInit {
   HighScore: number;
   CountDown: number;
   welcome: number;
+  thisMessage:number;
   ShowGameWin: boolean;
   subscription: Subscription;
   PendingSubscription: Subscription;
   WelcomeSubscription: Subscription;
 
-  constructor() {
+  constructor(private data: HeroService ) {
+  }
+
+  public pendingStart(){
+    this.CountDown = 3;
+    this.PressStart = true;
+    this.StopAudio = false;
+    this.PendingSubscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
+  }
+
+  public stop(para) {
+    this.gameOver();
+    this.StopTimer[para] = true;
+    this.GameWon = this.GameWon + 1;
+    this.DisableButton[para] = true;
   }
 
   private timeGenerator(){
@@ -75,13 +91,6 @@ export class BombComponent implements OnInit {
     this.gameOver();
   }
 
-  private stop(para) {
-    this.gameOver();
-    this.StopTimer[para] = true;
-    this.GameWon = this.GameWon + 1;
-    this.DisableButton[para] = true;
-  }
-
 
   private gameWin() {
     if (this.GameWon === 4 && this.timer[0] !== 0 && this.timer[1] !== 0 && this.timer[2] !== 0 && this.timer[3] !== 0) {
@@ -119,13 +128,6 @@ export class BombComponent implements OnInit {
     }
   }
 
-  private pendingStart(){
-    this.CountDown = 3;
-    this.PressStart = true;
-    this.StopAudio = false;
-    this.PendingSubscription = interval(1000).subscribe(this.treeTwoOne.bind(this));
-  }
-
   private treeTwoOne() {
     if (this.CountDown > 1) {
       this.CountDown--;
@@ -137,23 +139,12 @@ export class BombComponent implements OnInit {
     }
   }
 
- /* public welcomeMessage(){
-    if (this.welcome < 4) {
-      this.welcome = this.welcome + 1;
-    }
-    else {
-      this.WelcomeSubscription.unsubscribe();
-    }
-  }*/
-
-
   ngOnInit(): void {
+    this.data.CurrentMessage.subscribe(message => this.thisMessage = message)
     this.initializeGame();
     this.CountDown = 4;
     this.HighScore = 1000;
-    //this.welcome = 0;
     this.InfoBool = false;
-    //this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
   }
 
 }
