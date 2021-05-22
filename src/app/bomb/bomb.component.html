@@ -1,8 +1,8 @@
 <!--Bombs-->
-  <div class="outerBombs">
+  <div *ngIf="thisMessage == false" class="outerBombs">
     <div class="middle">
       <div class="container" >
-        <h2>Dumbest Game Ever</h2>
+        <h2>Dumbest Game Eve</h2>
 
         <!--Start and info button-->
         <div>
@@ -94,17 +94,6 @@
     <div class="middle">
       <div class="start-count inner set-border" style="text-align: center; background-color: #5DADE2; ">
         <div style="font-size: 80px; color: whitesmoke; margin-top: 5% ">{{CountDown}}</div>
-      </div>
-    </div>
-  </div>
-
-  <!--Intro Box-->
-  <div class="outer game-state" style="height: 100%"
-       *ngIf="welcome < 3" style="background-color: whitesmoke;">
-    <div class="middle">
-      <div class="inner" style="text-align: center; width: 98% ">
-        <h1>Welcome to The Dumbest Game Ever</h1>
-        <div class="loader container" style="text-align: center"></div>
       </div>
     </div>
   </div>

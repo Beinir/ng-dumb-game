@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BombComponent } from './bomb/bomb.component';
+import { MessageNotificationsComponent } from './messageNotifications/messageNotifications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BombComponent
+    BombComponent,
+    MessageNotificationsComponent
   ],
   imports: [
     BrowserModule,
