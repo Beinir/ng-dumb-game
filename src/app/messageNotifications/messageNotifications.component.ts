@@ -9,23 +9,30 @@ import { HeroService } from "../services/hero.service";
 })
 export class MessageNotificationsComponent implements OnInit {
 
-  welcome: number;
+  counter: number;
+  showThisScene: boolean
   WelcomeSubscription: Subscription;
 
   constructor(private data: HeroService) { }
 
   public welcomeMessage(){
-    if (this.welcome < 4) {
-      this.welcome = this.welcome + 1;
+    if (this.counter < 3) {
+      this.counter = this.counter + 1;
     }
     else {
+      this.updateMessage();
       this.WelcomeSubscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.welcome = 0;
+    this.data.CurrentMessage.subscribe(message => this.showThisScene = message)
+    this.counter = 0;
     this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
+  }
+
+  updateMessage() {
+    this.data.changeMessage(false);
   }
 
 }

@@ -23,7 +23,7 @@ export class BombComponent implements OnInit {
   HighScore: number;
   CountDown: number;
   welcome: number;
-  thisMessage:number;
+  thisMessage:boolean ;
   ShowGameWin: boolean;
   subscription: Subscription;
   PendingSubscription: Subscription;

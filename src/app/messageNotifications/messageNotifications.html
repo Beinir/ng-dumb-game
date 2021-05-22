@@ -1,10 +1,6 @@
 <!--Intro Box-->
-<div class="outer game-state" style="height: 100%"
-     *ngIf="welcome < 3" style="background-color: whitesmoke;">
-  <div class="middle">
-    <div class="inner" style="text-align: center; width: 98% ">
+<div *ngIf="showThisScene == true" class="outer game-state" style="height: 100%; background-color: whitesmoke;">
+    <div class="vertical-center" style="text-align: center; width: 98%">
       <h1>Welcome to The Dumbest Game Ever</h1>
-      <div class="loader container" style="text-align: center"></div>
     </div>
-  </div>
 </div>

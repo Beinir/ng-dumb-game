@@ -5,14 +5,14 @@ import  { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HeroService {
-  
-  private messageSource = new BehaviorSubject<number>(666);
-  CurrentMessage = this.messageSource.asObservable();
+
+  private showIntroSceneIfTrue = new BehaviorSubject<boolean>(true);
+  CurrentMessage = this.showIntroSceneIfTrue.asObservable();
 
   constructor() { }
 
-  changeMessage(message: number){
-    this.messageSource.next(message);
+  changeMessage(message: boolean){
+    this.showIntroSceneIfTrue.next(message);
   }
 
 }
