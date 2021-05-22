@@ -11,24 +11,24 @@ export class MessageNotificationsComponent implements OnInit {
 
   counter: number;
   showThisScene: boolean
-  WelcomeSubscription: Subscription;
+  Subscription: Subscription;
 
   constructor(private data: HeroService) { }
 
-  public welcomeMessage(){
+  public CountDownFunction(){
     if (this.counter < 3) {
       this.counter = this.counter + 1;
     }
     else {
       this.updateMessage();
-      this.WelcomeSubscription.unsubscribe();
+      this.Subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
     this.data.CurrentMessage.subscribe(message => this.showThisScene = message)
     this.counter = 0;
-    this.WelcomeSubscription = interval(1000).subscribe(this.welcomeMessage.bind(this));
+    this.Subscription = interval(1000).subscribe(this.CountDownFunction.bind(this));
   }
 
   updateMessage() {
