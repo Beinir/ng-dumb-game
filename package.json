@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "aws-deploy": "aws s3 sync dist/ng-dumb-game/ s3://ng-dumb-game"
+    "aws-deploy": "aws s3 sync dist/ng-dumb-game/ s3://ng-dumb-game",
+    "serve": "concurrently \"ng serve\" \"server/node_modules/.bin/ts-node-dev server/server.ts\""
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@ng-toolkit/serverless": "^8.1.0",
     "@ng-toolkit/universal": "^1.1.21",
     "bootstrap": "^4.5.0",
+    "concurrently": "^6.2.0",
     "howler": "^2.2.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
