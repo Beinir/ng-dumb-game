@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.send({hello: 'world'});
+  res.send({hello: 'world baby'});
 });
 
 app.listen(4201, '127.0.0.1', function () {
