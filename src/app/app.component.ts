@@ -10,11 +10,15 @@ export class AppComponent {
   title = 'ng-dumb-game';
 
   messages = this.http.get<any[]>('http://localhost:4201');
+  alphas:any[];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(){
-    console.log(this.messages);
+    this.messages.forEach(function (value){
+      console.log(value);
+      console.log('This Works');
+    });;
   }
 
 }
