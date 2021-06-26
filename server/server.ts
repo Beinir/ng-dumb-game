@@ -1,4 +1,5 @@
-  import express from 'express';
+import express from 'express';
+import { routes } from './routs';
 
   const app = express();
 
@@ -14,9 +15,9 @@
     }
   });
 
-  app.get('/', (req, res) => {
-    res.send({hello: 'world baby'});
-  });
+  app.use(express.json());
+
+  app.use('/', routes);
 
   app.listen(4201, '127.0.0.1', function () {
      console.log('Server Listening on port 4201');
