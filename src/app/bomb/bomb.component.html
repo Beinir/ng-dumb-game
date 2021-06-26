@@ -81,7 +81,7 @@
           <div class="game-over-timers">{{timer[3]}}</div>
         </div>
         <div *ngIf="TimeScore > HighScore" style="margin-top: 2%">You did not beat your high score</div>
-        <div *ngIf="TimeScore < HighScore" style="margin-top: 2%">New high score!!"</div>
+        <div *ngIf="TimeScore < HighScore  " style="margin-top: 2%">New high score!!"</div>
         <button type="button" class="btn btn-primary"
                 style="margin-top: 15%"
                 (click)="initializeGame()">Play Again</button>

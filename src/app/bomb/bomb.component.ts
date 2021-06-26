@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {observable, Observable, Subscription, timer, interval} from 'rxjs';
 import { HeroService } from "../services/hero.service";
 import {publish} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-bomb',
@@ -28,8 +29,10 @@ export class BombComponent implements OnInit {
   subscription: Subscription;
   PendingSubscription: Subscription;
   WelcomeSubscription: Subscription;
+  initialHighScore;
 
-  constructor(private data: HeroService ) {
+
+  constructor(private data: HeroService, private http: HttpClient ) {
   }
 
   public pendingStart(){
@@ -123,7 +126,10 @@ export class BombComponent implements OnInit {
   }
 
   private setHighScore() {
-    if (this.TimeScore < this.HighScore){
+    if (this.HighScore == 0) {
+      this.HighScore = this.TimeScore;
+    }
+    else if (this.TimeScore < this.HighScore){
       this.HighScore = this.TimeScore;
     }
   }
@@ -140,10 +146,13 @@ export class BombComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.get('http://localhost:4201/score').subscribe((data) => {
+      this.initialHighScore = data;
+      this.HighScore = this.initialHighScore.score;
+    });
     this.data.CurrentMessage.subscribe(message => this.thisMessage = message)
     this.initializeGame();
     this.CountDown = 4;
-    this.HighScore = 1000;
     this.InfoBool = false;
   }
 
