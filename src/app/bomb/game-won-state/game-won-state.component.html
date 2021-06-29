@@ -1,0 +1,20 @@
+<!--Game won box-->
+<div  class="outer game-state" style="background-color: rgba(255,255,255,0.7);">
+  <div class="middle">
+    <div class="inner set-border" style="text-align: center; background-color: #158d23; height: 180px; ">
+      <h1>You win</h1>
+      <div>Time: <b> {{TimeScore}} seconds</b> </div>
+      <div style="margin-top: 3%; margin-bottom: 3%">
+        <div class="game-over-timers">{{timer[0]}}</div>
+        <div class="game-over-timers">{{timer[1]}}</div>
+        <div class="game-over-timers">{{timer[2]}}</div>
+        <div class="game-over-timers">{{timer[3]}}</div>
+      </div>
+      <div *ngIf="TimeScore > HighScore" style="margin-top: 2%">You did not beat your high score</div>
+      <div *ngIf="TimeScore < HighScore  " style="margin-top: 2%">New high score!!"</div>
+      <button type="button" class="btn btn-primary"
+              style="margin-top: 15%"
+              (click)="callInitialGameInBombComponent()">Play Again</button>
+    </div>
+  </div>
+</div>

@@ -61,7 +61,6 @@ export class BombComponent implements OnInit {
     for (let i = 0; i < 4; i++){
       this.timer[i] = (Math.random() * (2.0 - 4.1) + 4.1).toFixed(1);
     }
-
   }
 
 
@@ -123,6 +122,7 @@ export class BombComponent implements OnInit {
     this.DisableBtn = false;
     this.GameWon = 0;
     this.CountDown = 4;
+    console.log('Riggar Hetta')
   }
 
   private setHighScore() {

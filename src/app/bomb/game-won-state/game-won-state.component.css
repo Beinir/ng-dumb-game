@@ -1,0 +1,38 @@
+.outer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.game-state {
+  background-color: #E74C3C;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+}
+
+.set-border {
+  border-radius: 10px;
+  border-style: solid ;
+  margin-top: 2%;
+  margin-right: 2%;
+  height: 150px;
+}
+
+.game-over-timers {
+  background-color: black;
+  color: red;
+  display: inline-block;
+  margin-left: 2%;
+  width: 10%;
+}
